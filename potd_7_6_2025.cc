@@ -34,3 +34,7 @@ public:
         return res;
     }
 };
+/* lexcographically 
+this i use priority queue and cmp 
+in cmp i use most minimum char at top with highest index
+then simply  add it to string and return the answer
