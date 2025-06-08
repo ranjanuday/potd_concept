@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int add(int s, int v) {
+        return s * 10 + v;
+    }
+
+    void dfs(int n, vector<int>& ans, int start) {
+        if (start > n) return;
+
+        ans.push_back(start);
+        for (int i = 0; i <= 9; i++) {
+            int next = add(start, i);
+            if (next > n) return; 
+            dfs(n, ans, next);
+        }
+    }
+
+    vector<int> lexicalOrder(int n) {
+        vector<int> ans;
+ 
+        if (n == 1) {
+            ans.push_back(1);
+            return ans;
+        }
+
+        for (int i = 1; i <= 9; i++) {
+            if (i > n) break;
+            dfs(n, ans, i);
+        }
+
+        return ans;
+    }
+};
+/*here you are doing 1 you are going deep 10,11,..19 same for all 1 to 9
+  and you are adding a number by s*10 + v; 1*10+0=10 and if start>n you are breaking 
+if n==ans.size() return ans; what if n!=ans.size() what did you return thats why it is saying void
