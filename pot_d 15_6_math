@@ -1,0 +1,55 @@
+class Solution {
+public:
+    int maxDiff(int num) {
+        vector<int> ans;
+        vector<int> res;
+        int temp = num;
+        while (temp > 0) {
+            ans.push_back(temp % 10);
+            res.push_back(temp % 10);
+            temp /= 10;
+        }
+
+        reverse(ans.begin(), ans.end());
+        reverse(res.begin(), res.end());
+
+        int x = -1;
+        for (int i = 0; i < ans.size(); i++) {
+            if (ans[i] != 9) {
+                x = ans[i];
+                break;
+            }
+        }
+
+        int y = -1;
+        int y_replace = -1;
+        for (int i = 0; i < res.size(); i++) {
+            if (i == 0 && res[i] != 1) {
+                y = res[i];
+                y_replace = 1;
+                break;
+            } else if (i != 0 && res[i] != 0 && res[i]!=1) {
+                y = res[i];
+                y_replace = 0;
+                break;
+            }
+        }
+
+        for (int i = 0; i < ans.size(); i++) {
+            if (ans[i] == x) ans[i] = 9;
+        }
+
+        for (int i = 0; i < res.size(); i++) {
+            if (res[i] == y) res[i] = y_replace;
+        }
+
+        int a = 0, b = 0;
+        for (int i = 0; i < ans.size(); i++) {
+            a = a * 10 + ans[i];
+            b = b * 10 + res[i];
+        }
+
+        return a - b;
+    }
+};
+for maximum it is simple but for minimum b you have to check for leading zero if first element is not 1 then simply convert it to 1 and search for the element in num to make it 1 and second case if first element is 1 then it must then other element which is 1 we also have to skip and zero becoz it is minimum and set all the y_replace to 0 then use simple math
