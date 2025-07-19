@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<string> removeSubfolders(vector<string>& folder) {
+        vector<string> ans;
+        int n = folder.size();
+        sort(folder.begin(), folder.end());
+        string prev = folder[0];
+        ans.push_back(folder[0]);
+
+        for (int i = 1; i < n; i++) {
+            string n1 = folder[i];
+       /* use of find function it take two string n1 and prev so time complexity is n1*prev and
+        let /a/b.find(/a/) it will return the index where it is equal in this case 3
+        starting jismein find krna hai find ka andar jisko find krna hai
+
+            if (n1.find(prev + "/") != 0) {
+                ans.push_back(n1);
+                prev = n1;
+            }
+        }
+
+        return ans;
+    }
+};
